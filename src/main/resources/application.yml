@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/lifedefender?characterEncoding=UTF-8&serverTimezone=UTC
+    username: lifedefender
+    password: lifedefender
+
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        format_sql: true #To beautify or pretty print the SQL
+        show_sql: true #show sql
+        default_batch_fetch_size: 10
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        one-indexed-parameter: true
+logging.level:
+  org.hibernate.SQL: debug
+  org.hibernate.type: trace
+  org.hibernate.orm.jdbc.bind: trace
