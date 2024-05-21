@@ -13,7 +13,6 @@ public class SleepRequestDto {
     private Integer sleepHour;
     private Integer sleepMinute;
     private Integer sleepDay;
-    private Integer usuallySleep;
     private LocalDateTime regDate;
     private String regId;
 
@@ -22,8 +21,7 @@ public class SleepRequestDto {
                 this.sleepPlace,
                 this.sleepHour,
                 this.sleepMinute,
-                this.sleepDay,
-                this.usuallySleep
+                this.sleepDay
         );
     }
 }

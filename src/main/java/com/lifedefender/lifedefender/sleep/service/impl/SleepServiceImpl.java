@@ -1,9 +1,13 @@
 package com.lifedefender.lifedefender.sleep.service.impl;
 
 import com.lifedefender.lifedefender.entity.Sleep;
+import com.lifedefender.lifedefender.entity.UsualSleep;
 import com.lifedefender.lifedefender.sleep.dto.SleepRequestDto;
 import com.lifedefender.lifedefender.sleep.dto.SleepResponseDto;
+import com.lifedefender.lifedefender.sleep.dto.UsualSleepRequestDto;
+import com.lifedefender.lifedefender.sleep.dto.UsualSleepResponseDto;
 import com.lifedefender.lifedefender.sleep.repository.SleepRepository;
+import com.lifedefender.lifedefender.sleep.repository.UsualSleepRepository;
 import com.lifedefender.lifedefender.sleep.service.SleepService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,8 +24,10 @@ import java.util.stream.Collectors;
 public class SleepServiceImpl implements SleepService {
 
     private final SleepRepository sleepRepository;
+    private final UsualSleepRepository usualSleepRepository;
+
     @Override
-    public ResponseEntity<List<SleepResponseDto>> retrieve() {
+    public ResponseEntity<List<SleepResponseDto>> retrieveSleep() {
 
         List<Sleep> findSleeps = sleepRepository.findAll();
 
@@ -34,9 +40,20 @@ public class SleepServiceImpl implements SleepService {
 
     @Override
     @Transactional
-    public ResponseEntity<SleepResponseDto> save(SleepRequestDto sleepRequestDto) {
+    public ResponseEntity<SleepResponseDto> saveSleep(SleepRequestDto sleepRequestDto) {
 
         Sleep saveSleep = sleepRepository.save(sleepRequestDto.toEntity());
         return new ResponseEntity<>(new SleepResponseDto(saveSleep),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<UsualSleepResponseDto> usualSleepSave(UsualSleepRequestDto usualSleepRequestDto) {
+        UsualSleep saveUsualSleep = usualSleepRepository.save(usualSleepRequestDto.toEntity());
+        return new ResponseEntity<>(new UsualSleepResponseDto(saveUsualSleep),HttpStatus.OK);
+    }
+
+    @Override
+    public ResponseEntity<UsualSleepResponseDto> retrieveUsualSleep() {
+        return null;
     }
 }
